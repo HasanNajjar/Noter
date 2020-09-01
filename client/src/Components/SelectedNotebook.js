@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getItems } from '../actions/itemActions';
 import { useParams } from 'react-router-dom';
 
-function About({getItems, item, }) {
+function About({getItems, item}) {
     useEffect(() => {
         getItems()
     }, [getItems])
@@ -17,15 +17,24 @@ function About({getItems, item, }) {
             <>
             {items.filter(item => item._id == id).map(el => (
                 <>
-                <div class="flex flex-col w-1/6 border-r">
-                <div class="px-4 pt-4 pb-4 text-lg font-bold border-b bg-gray-100">
+                <div class="flex flex-col w-1/6 border-r"> 
+                <div class="px-4 pt-4 pb-4 text-lg font-bold border-b bg-gray-100">  
                 {el.name}
                 </div>
-                <div>
-                </div>
-                <div>
-                
-                Project 123</div>
+                <ul>
+                {el.notes ? el.notes.map((notes) => (
+                    <>
+                    <div class="hover:bg-gray-300">
+                    <div class=" pt-4 pb-4 mx-4 font-semibold border-b ">
+                    <li>
+                    {notes}
+                    </li>
+                    </div> 
+                    </div>
+                    </>
+                )): null}
+                </ul>
+
                 </div>
 
                 </>

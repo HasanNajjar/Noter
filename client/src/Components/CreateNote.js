@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import { Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input,  } from 'reactstrap'
 import {addItem} from '../actions/itemActions'
 
-function CreateNotebook({addItem}) {
+function CreateNote({addItem}) {
     const [modal, setModal] = useState(false)
     const [name, setName] = useState('')
   
@@ -25,13 +25,11 @@ function CreateNotebook({addItem}) {
     return (
       <>
       <button 
-          class="text-white py-2 m-2 bg-purple-600 px-10 rounded border-white hidden lg:block"
-          onClick={handleToggle}
-          >
-          New Notebook
+        class="text-black py-2 m-2  bg-gray-100 px-10 rounded border-2 border-gray-400 cursor-not-allowed hidden lg:block"
+        onClick={handleToggle}
+        >
+        New Note
       </button>
-
-
           <Modal isOpen={modal} toggle={handleToggle}>
               <ModalHeader toggle={handleToggle}>Create a new Notebook</ModalHeader>
               <ModalBody>
@@ -62,4 +60,4 @@ const mapStateToProps = (state) => ({
     item: state.item
 })
 
-export default connect(mapStateToProps, {addItem})(CreateNotebook)
+export default connect(mapStateToProps, {addItem})(CreateNote)
