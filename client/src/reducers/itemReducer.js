@@ -1,4 +1,4 @@
-import {GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from '../actions/types'
+import {GET_ITEMS, ADD_ITEM, DELETE_ITEM, UPDATE_ITEM, ITEMS_LOADING } from '../actions/types'
 
 const initialState = {
     items: [],
@@ -22,6 +22,11 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 items: [action.payload, ...state.items] //payload is the new item, it adds it to the database too
+            }
+        case UPDATE_ITEM:
+            return {
+                ...state,
+                items: state.items.filter(item=> item._id !== action.payload)
             }
         case ITEMS_LOADING:
             return {

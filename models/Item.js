@@ -6,12 +6,17 @@ const Schema = mongoose.Schema;
 const ItemSchema = new Schema({
     name: {
         type: String,
-        required: false
+        required: true
+    },
+    notes: {
+        type: [],
+        reqired: false
     },
     date: {
         type: Date,
         default: Date.now
     }
+
 });
 
 module.exports = Item = mongoose.model('item', ItemSchema);

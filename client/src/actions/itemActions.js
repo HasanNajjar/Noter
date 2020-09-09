@@ -34,6 +34,7 @@ export const deleteItem = (id) => dispatch => {
         }))
 }
 
+
 export const setItemsLoading =  () => {
     return {
         type: ITEMS_LOADING // sets it from false to true

@@ -6,16 +6,19 @@ import {addItem} from '../actions/itemActions'
 function CreateNote({addItem}) {
     const [modal, setModal] = useState(false)
     const [name, setName] = useState('')
-  
+    const [random, setRandom] = useState('')
+
     const handleToggle = () => setModal(!modal)
 
     const handleChangeName = (e) => setName(e.target.value)
-  
+    const handleChangeRandom = (e) => setRandom(e.target.value)
+
     const handleOnSubmit = (e) => {
       e.preventDefault()
   
       const newItem = {
-        name
+        name,
+        random
       }
 
       addItem(newItem)
@@ -31,18 +34,28 @@ function CreateNote({addItem}) {
         New Note
       </button>
           <Modal isOpen={modal} toggle={handleToggle}>
-              <ModalHeader toggle={handleToggle}>Create a new Notebook</ModalHeader>
+              <ModalHeader toggle={handleToggle}>Create a new Note</ModalHeader>
               <ModalBody>
                <Form onSubmit={handleOnSubmit}>
                 <FormGroup>
-                  <Label for="item">Notebook Title </Label>
+
+                  <Label for="item">Note Title </Label>
                   <Input 
                   type="text"
-                  name="name"
+                  name="notes"
                   id="item"
-                  placeholder="Programming, Personal ..."
+                  placeholder="Note Title..."
                   onChange={handleChangeName}
                   />
+                  <Label for="item">Note Title </Label>
+                  <Input 
+                  type="text"
+                  name="notes"
+                  id="random"
+                  placeholder="Note Title..."
+                  onChange={handleChangeRandom}
+                  />
+                  
                   <div class="pt-4">
                   <button class="text-white py-2 mx-auto min-w-full text-center bg-purple-600 px-10 rounded border-white content-end right text-right">
                   Submit

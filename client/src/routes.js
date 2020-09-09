@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route, Link, useParams } from 'react-router-dom';
+import { Switch, Route} from 'react-router-dom';
 import SelectedNotebook from './Components/SelectedNotebook';
 import Notebook from './Components/Notebook';
 

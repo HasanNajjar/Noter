@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 // Public - Would be private if there was authentication
 router.post('/', (req, res) => {
     const newItem = new Item({
-        name: req.body.name
+        name: req.body.name,
     });
 
     newItem.save().then(item => res.json(item));
@@ -31,11 +31,6 @@ router.delete('/:id', (req, res) => {
 Item.findById(req.params.id)
  .then(item => item.remove().then(() => res.json({success: true})))
  .catch(error => res.status(404).json({success: false}))    
-})
-
-
-router.get('/admin', (req, res) => {
-    res.redirect()
 })
 
 

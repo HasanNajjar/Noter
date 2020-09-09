@@ -5,17 +5,22 @@ import {addItem} from '../actions/itemActions'
 
 function CreateNotebook({addItem}) {
     const [modal, setModal] = useState(false)
+
     const [name, setName] = useState('')
-  
+    const [notes, setNote] = useState([])
+
     const handleToggle = () => setModal(!modal)
 
     const handleChangeName = (e) => setName(e.target.value)
-  
+    
+    const handleChangeNote = (e) => setNote(e.target.value)
+
     const handleOnSubmit = (e) => {
       e.preventDefault()
   
       const newItem = {
-        name
+        name,
+        notes
       }
 
       addItem(newItem)
@@ -38,6 +43,7 @@ function CreateNotebook({addItem}) {
                <Form onSubmit={handleOnSubmit}>
                 <FormGroup>
                   <Label for="item">Notebook Title </Label>
+
                   <Input 
                   type="text"
                   name="name"
@@ -45,6 +51,15 @@ function CreateNotebook({addItem}) {
                   placeholder="Programming, Personal ..."
                   onChange={handleChangeName}
                   />
+
+                  <Input 
+                  type="text"
+                  name="notes"
+                  id="item"
+                  placeholder="Programming, Personal ..."
+                  onChange={handleChangeNote}
+                  />
+
                   <div class="pt-4">
                   <button class="text-white py-2 mx-auto min-w-full text-center bg-purple-600 px-10 rounded border-white content-end right text-right">
                   Submit
