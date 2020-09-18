@@ -7,20 +7,16 @@ function CreateNotebook({addItem}) {
     const [modal, setModal] = useState(false)
 
     const [name, setName] = useState('')
-    const [notes, setNote] = useState([])
 
     const handleToggle = () => setModal(!modal)
 
     const handleChangeName = (e) => setName(e.target.value)
     
-    const handleChangeNote = (e) => setNote(e.target.value)
-
     const handleOnSubmit = (e) => {
       e.preventDefault()
   
       const newItem = {
-        name,
-        notes
+        name
       }
 
       addItem(newItem)
@@ -52,13 +48,6 @@ function CreateNotebook({addItem}) {
                   onChange={handleChangeName}
                   />
 
-                  <Input 
-                  type="text"
-                  name="notes"
-                  id="item"
-                  placeholder="Programming, Personal ..."
-                  onChange={handleChangeNote}
-                  />
 
                   <div class="pt-4">
                   <button class="text-white py-2 mx-auto min-w-full text-center bg-purple-600 px-10 rounded border-white content-end right text-right">

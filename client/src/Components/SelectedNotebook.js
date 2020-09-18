@@ -2,8 +2,10 @@ import React, {useEffect} from 'react'
 import { connect } from 'react-redux';
 import { getItems } from '../actions/itemActions';
 import { useParams, Redirect } from 'react-router-dom';
+import Sidebar from './Sidebar';
+import Searchbar from './Searchbar';
 
-function About({getItems, item }) {
+function SelectedNotebook({getItems, item }) {
     useEffect(() => {
         getItems()
     }, [getItems])
@@ -14,6 +16,9 @@ function About({getItems, item }) {
     const displayNotebook = (id) => {
         return(
             <>
+            <Searchbar  />
+            <div class="flex flex-row">
+            <Sidebar />
             {items.filter(item => item._id === id).map(el => (
                 <>
                 <div class="flex flex-col w-1/6 border-r"> 
@@ -45,13 +50,15 @@ function About({getItems, item }) {
 
                 </>
             ))}
+            </div>
+
             </>
         )
     }
 
     return(
         <>
-        {items.find(item => item._id === id) ? displayNotebook(id) : <Redirect to="/" />}
+        {items.find(item => item._id === id) ? displayNotebook(id) : null}
         </>
     )
 }
@@ -61,7 +68,7 @@ const mapStateToProps = (state) => ({
     item: state.item,
   });
   
-  export default connect(mapStateToProps, { getItems })(About);
+  export default connect(mapStateToProps, { getItems })(SelectedNotebook);
 
 /* 
  */

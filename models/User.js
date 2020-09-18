@@ -19,7 +19,11 @@ const UserSchema = new Schema({
     register_date: {
         type: Date,
         default: Date.now
-    }
+    },
+    notebooks: [{
+        type: Schema.Types.ObjectId,
+        ref: "item"
+    }]
 });
 
 module.exports = User = mongoose.model('user', UserSchema);

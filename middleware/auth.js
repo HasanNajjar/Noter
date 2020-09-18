@@ -7,9 +7,8 @@ function auth(req, res, next) {
     const token = req.header('x-auth-token');
 
     //Check token
-    if(!token) {
-        res.status(401).json({Error: 'No token, authorisation denied' }); // incorrect/unauthorised permissions
-    }
+    if(!token) return res.status(401).json({Error: 'No token, authorisation denied' }) // incorrect/unauthorised permissions
+        
 
     try {
     //Verify token

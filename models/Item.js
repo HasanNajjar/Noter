@@ -4,19 +4,19 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const ItemSchema = new Schema({
+
     name: {
         type: String,
         required: true
     },
-    notes: {
-        type: [],
-        reqired: false
-    },
     date: {
         type: Date,
         default: Date.now
+    },
+    postedBy: {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
     }
-
 });
 
 module.exports = Item = mongoose.model('item', ItemSchema);

@@ -1,8 +1,9 @@
 import React  from 'react'
 import SidebarNotebooks from './SidebarNotebooks'
 import CreateNotebook from './CreateNotebook'
+import { connect } from 'react-redux';
 
-export default function Sidebar() {
+ function Sidebar({auth}) {
     return(
       
         <div class="lg:w-1/6 h-screen min-h-full bg-gray-100 border-r">
@@ -17,10 +18,16 @@ export default function Sidebar() {
           </div>
          </div>
          <div class="lg:px-4 lg:pt-16 pb-4 text-lg lg:font-bold ">
-          Hasan's Notebooks
+          {auth && auth.user ? `${auth.user.name}` + "'s notebook" : null }
          </div>
         <SidebarNotebooks />
       </div>
     )
 }
 
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, null)(Sidebar);

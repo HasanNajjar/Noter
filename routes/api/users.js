@@ -6,10 +6,11 @@ const config = require('config')
 
 const User = require('../../models/User')
 
+
 // POST api/users
 // Register a new user
 router.post('/', (req, res) => {
-    const {name, email, password} = req.body; 
+    const {name, email, password} = req.body;     
 
     // validate for missing fields
     if(!name || !email || !password ) {
@@ -26,7 +27,7 @@ router.post('/', (req, res) => {
             const newUser = new User({
                 name,
                 email,
-                password
+                password,
             })
 
             // salt and hash the password. once done, send the json data to the server and register user
@@ -60,4 +61,25 @@ router.post('/', (req, res) => {
         })
 });
 
+// GET api/users
+// Get all users
+router.get('/', (req, res) => {
+    User.find()
+    .sort({ date: -1 })
+    .then(items => res.json(items))
+})
+
+// GET api/users/id
+// Get a single user by id
+router.get('/:id', (req, res) => {
+    User.findById(req.params.id)
+    .then(items => res.json(items))
+
+})
+
+router.get('/:id/notebooks', (req, res) => {
+    User.find({id: req.params.id}).populate("items")
+    .then(items => res.json(items))
+
+})
 module.exports = router;
